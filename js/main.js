@@ -202,26 +202,20 @@ function sidebarCollapseClick() {
 
   Item.addEventListener("click", () => {
     const sidebar = document.querySelector("#sidebar");
-    //sidebar.classList.toggle("active");
-    //const menutext = document.querySelector("#sidebar .navMenuText");
     const items = document.querySelectorAll("#sidebar .navMenuText");
 
     if (sidebar.classList.contains("active")) {
       sidebar.classList.remove("active");
-      //menutext.style.display = "inline";
       items.forEach((i) => {
         i.style.display = "inline";
       });
     } else {
       sidebar.classList.add("active");
-      //menutext.style.display = "none";
       items.forEach((i) => {
         i.style.display = "none";
       });
     }
 
-    //menutext.fadeToggle(150);
-    //triggerResize();
   });
 
   //triggerResize();

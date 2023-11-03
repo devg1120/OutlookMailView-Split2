@@ -43,7 +43,7 @@ a:focus {
 }
 
 .navbar {
-  padding: 15px 10px;
+  padding: 15px 10px; 
   background: #fff;
   border: none;
   border-radius: 0;
@@ -76,7 +76,7 @@ span {
 
 .wrapper {
   display: flex;
- /* align-items: stretch; */
+  align-items: stretch; 
 }
 
 
@@ -84,8 +84,8 @@ span {
   min-width: 200px;
   max-width: 250px;
 
-  /* background-image: url("./img/background_tinted_multiply.jpg"); */
-  background-color: #0066FF;
+   background-image: url("./img/background_tinted_multiply.jpg"); 
+  /* background-color: #0066FF; */
   background-repeat: no-repeat;
   color: #fff;
   transition: all 0.3s;
