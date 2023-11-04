@@ -132,6 +132,34 @@ function loadMailItem(listItem) {
   $("#to_name").innerHTML = mail.to;
   $("#mail_body").innerHTML = mail.summary;
 
+
+    var strAttachmentsHtml = '';
+    for (let i = 0; i < mail.attachments.length; i++) {
+                    //<img class="attachment_image" src="./img/file_images/{{ATTACHMENT_TYPE}}.svg" onError="this.onerror=null;this.src=\'./img/file_images/file.svg\'"/>\
+                    //<img class="attachment_image" src="./img/file_images/{{ATTACHMENT_TYPE}}.svg" onError="console.log(\'img load error: {{ATTACHMENT_TYPE}}.svg \');"/>\
+        strAttachmentsHtml += '\
+            <li>\
+                <a href="#">\
+                    <div class="attachment_info">\
+                    <img class="attachment_image" src="./img/file_images/{{ATTACHMENT_TYPE}}.svg" onError="this.onerror=null;this.src=\'./img/file_images/file.svg\'"/>\
+                        <span>{{ATTACHMENT_NAME}}</span>\
+                        <span>{{ATTACHMENT_SIZE}}</span>\
+                    </div>\
+                </a>\
+            </li>'
+            .replace(/{{ATTACHMENT_TYPE}}/g, mail.attachments[i].name.split('.').pop())
+            .replace('{{ATTACHMENT_NAME}}', mail.attachments[i].name)
+            .replace('{{ATTACHMENT_SIZE}}', mail.attachments[i].size);
+    }
+
+    console.log(strAttachmentsHtml);
+
+    if (mail.attachments.length > 0) {
+      $('#mail_attachments').innerHTML =  '<ul>' + strAttachmentsHtml + '</ul>' ;
+      //$('.mail_content').show();                                                                                            
+    }
+
+
   //$('#mail_sender_image').css('background-color', senderColor);
   //$('#mail_sender_image_span').text(senderImage);
   //$('#mail_subject').text(mail.subject);
@@ -208,6 +236,10 @@ function sidebarCollapseClick() {
       sidebar.classList.remove("active");
       items.forEach((i) => {
         i.style.display = "inline";
+        i.style.opacity = 0; 
+        i.style.transition = "opacity " + 2000 + "ms";      
+        setTimeout(function(){i.style.opacity = 1;}, 1); 
+
       });
     } else {
       sidebar.classList.add("active");
